@@ -33,3 +33,43 @@ function addDigit(x) {
       state.newCalculation = false;
     }
   }
+
+function operation(x) {
+  var operator = x;
+  state.operator = operator;
+
+  var a = state.aState;
+  var b = state.bState;
+
+  if (a !=="0"  && b !=="0") {
+    var result = calculation(a, b, operator);
+    state.bState = result.toString(10);
+    state.input = result;
+    state.aState = "0";
+  } else {
+    state.bState = a;
+    state.aState = "0";
+  }
+}
+
+function calculation(a, b, operator) {
+  operator = state.operator;
+  a = Number(a);
+  b = Number(b);
+  var result = 0;
+  if(operator === "+") {
+    result = a + b;
+  }
+  else if(operator === "-") {
+    result = b - a;
+  }
+  else if(operator === "/" && (b === 0 || a === 0)) {
+    result = 0;
+  }
+  else if (operator === "/") {
+    result = b / a;
+  } else {
+    result = a * b;
+  }
+  return result;
+}
