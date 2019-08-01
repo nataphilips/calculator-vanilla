@@ -7,9 +7,15 @@ var initialState = {
 }
 
 var state = Object.assign({}, initialState);
+updateInput(state.input);
 
 function reset() {
   state = Object.assign({}, initialState);
+  updateInput(state.input);
+}
+
+function updateInput(value) {
+  document.getElementById('value').value = value;
 }
 
 function addDigit(x) {
@@ -29,6 +35,7 @@ function addDigit(x) {
           a = a.concat(x.toString(10));
         }
       state.input = a;
+      updateInput(state.input);
       state.aState = a;
       state.newCalculation = false;
     }
@@ -45,6 +52,7 @@ function operation(x) {
     var result = calculation(a, b, operator);
     state.bState = result.toString(10);
     state.input = result;
+    updateInput(state.input);
     state.aState = "0";
   } else {
     state.bState = a;
@@ -78,6 +86,7 @@ function equals() {
   var toPrint = calculation(state.aState, state.bState, state.operator);
   state.aState = toPrint.toString(10);
   state.input = toPrint;
+  updateInput(state.input);
   state.bState = "0";
   state.newCalculation = true;
 }
