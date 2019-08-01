@@ -73,3 +73,11 @@ function calculation(a, b, operator) {
   }
   return result;
 }
+
+function equals() {
+  var toPrint = calculation(state.aState, state.bState, state.operator);
+  state.aState = toPrint.toString(10);
+  state.input = toPrint;
+  state.bState = "0";
+  state.newCalculation = true;
+}
