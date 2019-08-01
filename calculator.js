@@ -7,7 +7,6 @@ var initialState = {
 }
 
 var state = Object.assign({}, initialState);
-updateInput(state.input);
 
 function reset() {
   state = Object.assign({}, initialState);
@@ -89,4 +88,18 @@ function equals() {
   updateInput(state.input);
   state.bState = "0";
   state.newCalculation = true;
+}
+
+function plusMinus() {
+  var displayed = state.aState;
+  if (displayed[0] == "-") {
+    displayed = displayed.substring(1);
+  } else if (displayed[0] == "0" && displayed.indexOf(".") === -1) {
+    return displayed;
+  }  else {
+    displayed = "-" + displayed;
+  }
+  state.input = displayed;
+  updateInput(state.input);
+  state.aState = displayed;
 }
