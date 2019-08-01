@@ -18,27 +18,27 @@ function updateInput(value) {
 }
 
 function addDigit(x) {
-    var a = state.aState;
-    if (x == 0 && state.input == 0) {
-      a = "0";
+  var a = state.aState;
+  if (x == 0 && state.input === 0) {
+    a = "0";
+  } else {
+    if (a === "0" && x == ".") {
+      a = a.concat(x);
+    } else if (x == "." && a.indexOf(".") !== -1) {
+      return;
+    } else if (state.newCalculation === true) {
+      a = x.toString(10);
+    } else if (a == "0") {
+      a = x.toString(10);
     } else {
-        if (a === "0" && x == ".") {
-          a = a.concat(x);
-        } else if (x == "." && a.indexOf(".") === -1) {
-          a = a.concat(x);
-        } else if (state.newCalculation === true) {
-          a = x.toString(10);
-        } else if (a == "0") {
-          a = x.toString(10);
-        } else {
-          a = a.concat(x.toString(10));
-        }
-      state.input = a;
-      updateInput(state.input);
-      state.aState = a;
-      state.newCalculation = false;
+      a = a.concat(x.toString(10));
     }
   }
+  state.input = a;
+  updateInput(state.input);
+  state.aState = a;
+  state.newCalculation = false;
+}
 
 function operation(x) {
   var operator = x;
