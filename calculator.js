@@ -92,13 +92,7 @@ function equals() {
 
 function plusMinus() {
   var displayed = state.aState;
-  if (displayed[0] == "-") {
-    displayed = displayed.substring(1);
-  } else if (displayed[0] == "0" && displayed.indexOf(".") === -1) {
-    return displayed;
-  }  else {
-    displayed = "-" + displayed;
-  }
+  displayed = Number(displayed) * (-1);
   state.input = displayed;
   updateInput(state.input);
   state.aState = displayed;
