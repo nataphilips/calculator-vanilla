@@ -103,3 +103,11 @@ function plusMinus() {
   updateInput(state.input);
   state.aState = displayed;
 }
+
+function percent() {
+  var displayed = state.aState;
+  displayed = (Number(displayed) / 100).toString(10);
+  state.input = displayed;
+  updateInput(state.input);
+  state.aState = displayed;
+}
